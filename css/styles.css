@@ -1,0 +1,488 @@
+/* --- 1. REINICIO BÁSICO / ESTILOS GLOBALES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #E8F5E9;
+
+    /* SOLUCIÓN PARA EL CONTENIDO BAJO EL HEADER FIJO */
+    /* Este valor es para pantallas grandes */
+    scroll-padding-top: 65px; /* Altura aprox. del header en desktop (10px + h1_height + 10px) */
+}
+
+/* Estilos para enlaces generales */
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+/* Estilos para títulos */
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+
+/* --- 2. GOOGLE FONTS IMPORT --- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@700&display=swap');
+
+
+/* --- 3. ESTILOS DEL HEADER --- */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+
+    display: flex; /* Por defecto, en desktop, logo e nav están lado a lado */
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 2em;
+}
+
+/* --- 4. ESTILOS DE NAVEGACIÓN (NAV) --- */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* --- 5. ESTILOS GENERALES DE SECCIONES --- */
+section {
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para la sección de inicio */
+#inicio {
+    background: linear-gradient(135deg, #e0f2f7 0%, #bbdefb 100%);
+    text-align: center;
+    padding-top: 80px; /* Ya tenía este valor, lo mantenemos como mínimo */
+}
+
+#inicio img {
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* --- 6. SECCIÓN PRODUCTOS (FLEXBOX) --- */
+#productos .productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.producto-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+}
+
+.producto-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.producto-card h3 {
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+.producto-card p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.producto-card span {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-top: 10px;
+    display: block;
+}
+
+.boton-comprar {
+    display: inline-block;
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-comprar:hover {
+    background-color: #27ae60;
+}
+
+/* --- 7. SECCIÓN RESEÑAS (CSS GRID) --- */
+#reseñas .reseñas-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.reseña-item {
+    background-color: #e8f5e9;
+    border-left: 5px solid #4CAF50;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reseña-item h3 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.reseña-item p {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.reseña-item .autor-reseña {
+    text-align: right;
+    font-weight: bold;
+    color: #333;
+    font-style: normal;
+}
+
+
+/* --- 8. SECCIÓN CONTACTO (FORMULARIO Y MEDIA QUERIES) --- */
+#contacto {
+    background-color: #f0f8ff;
+    padding: 40px 20px;
+}
+
+#contacto form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.boton-enviar {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-enviar:hover {
+    background-color: #2980b9;
+}
+
+
+/* --- 9. ESTILOS DEL FOOTER --- */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: #fff;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #bbdefb;
+}
+
+
+/* --- 10. ESTILOS PARA SECCIÓN DE VIDEOS RELACIONADOS (Alineados como cards de producto) --- */
+#productos-video {
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+#productos-video .video-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.video-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+}
+
+.video-item h3 {
+    color: #34495e;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.video-item p {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+/* Contenedor para videos responsivos (aspect-ratio trick) */
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background-color: #000;
+    border-radius: 4px;
+}
+
+.video-responsive iframe,
+.video-responsive object,
+.video-responsive embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* --- 11. MEDIA QUERIES (PARA RESPONSIVE DESIGN) --- */
+
+/* Para pantallas más pequeñas que 768px (tabletas y móviles) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Apila el título y la navegación */
+        justify-content: center; /* Centra el contenido cuando se apila */
+        padding: 15px 15px; /* Más padding vertical para cuando está apilado */
+    }
+
+    header h1 {
+        margin-bottom: 10px; /* Espacio entre el título y el menú */
+        font-size: 2em; /* Puedes ajustar este tamaño */
+    }
+
+    nav ul {
+        flex-direction: column; /* Apila los elementos del menú */
+        align-items: center; /* Centra los elementos apilados */
+    }
+
+    nav ul li {
+        margin: 8px 0;
+    }
+
+    nav ul li a {
+        padding: 8px 15px; /* Volver a un padding decente para los botones apilados */
+    }
+
+    /* Ajustes para las cards de productos y videos en pantallas medianas */
+    .producto-card,
+    .video-item {
+        max-width: 48%;
+    }
+
+    /* Ajustes para las reseñas en pantallas medianas (Grid) */
+    #reseñas .reseñas-grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    #contacto form {
+        padding: 20px;
+    }
+
+    /* Ajuste de scroll-padding-top para esta altura de header apilado */
+    body {
+        scroll-padding-top: 130px; /* Aprox. 15px (padding header) + h1_height + 10px (margin) + nav_height + 15px (padding header) */
+    }
+}
+
+/* Para pantallas aún más pequeñas que 480px (principalmente móviles) */
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+        scroll-padding-top: 130px; /* Asegura que mantenga el espacio incluso en las más pequeñas */
+    }
+
+    header {
+        padding: 10px 10px; /* Reducir aún más el padding en móviles */
+    }
+
+    header h1 {
+        font-size: 1.5em; /* Un poco más pequeño para pantallas muy pequeñas */
+        margin-bottom: 8px; /* Más compacto */
+    }
+
+    nav ul li {
+        margin: 6px 0; /* Más compacto en el menú */
+    }
+
+    nav ul li a {
+        padding: 6px 12px; /* Más compacto en los botones del menú */
+    }
+
+
+    section {
+        padding: 20px 15px;
+    }
+
+    /* Una sola columna para productos y videos en móviles */
+    .producto-card,
+    .video-item {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    /* Una sola columna para reseñas en móviles */
+    #reseñas .reseñas-grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea,
+    .boton-enviar {
+        width: 100%;
+        padding: 10px;
+    }
+}
