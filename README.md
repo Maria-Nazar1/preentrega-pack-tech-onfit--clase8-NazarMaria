@@ -33,7 +33,7 @@ Para explorar este proyecto en tu navegador web:
 
 1.  **Clona el repositorio** en tu máquina local o descarga los archivos ZIP.
     ```bash
-    git clone [https://github.com/tu-usuario/nombre-del-repositorio.git](https://github.com/tu-usuario/nombre-del-repositorio.git)
+    git clone [https://github.com/Maria-Nazar1/preentrega-pack-tech-onfit--clase8-NazarMaria.git](https://github.com/tu-usuario/nombre-del-repositorio.git)
     ```
 2.  **Navega** a la carpeta del proyecto.
 3.  **Abre el archivo `index.html`** en tu navegador web preferido (Google Chrome, Mozilla Firefox, Microsoft Edge, etc.).
