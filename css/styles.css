@@ -10,7 +10,6 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #E8F5E9;
-
     /* SOLUCIÓN PARA EL CONTENIDO BAJO EL HEADER FIJO */
     /* Este valor es para pantallas grandes */
     scroll-padding-top: 65px; /* Altura aprox. del header en desktop (10px + h1_height + 10px) */
@@ -40,23 +39,18 @@ h2 {
     padding-top: 20px;
 }
 
-
 /* --- 2. GOOGLE FONTS IMPORT --- */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@700&display=swap');
-
 
 /* --- 3. ESTILOS DEL HEADER --- */
 header {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
-
-    display: flex; /* Por defecto, en desktop, logo e nav están lado a lado */
+    display: flex;
     justify-content: space-between;
     align-items: center;
-
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
     position: fixed;
     top: 0;
     width: 100%;
@@ -95,6 +89,23 @@ nav ul li a.active {
     background-color: rgba(255, 255, 255, 0.15);
 }
 
+/* Estilo para el botón general del carrito en el header */
+header .carrito {
+    margin-left: auto;
+    padding-left: 15px;
+}
+
+header .carrito a {
+    color: #fff;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+header .carrito a:hover {
+    color: #bbdefb;
+}
+
+
 /* --- 5. ESTILOS GENERALES DE SECCIONES --- */
 section {
     padding: 40px 20px;
@@ -111,7 +122,7 @@ section {
 #inicio {
     background: linear-gradient(135deg, #e0f2f7 0%, #bbdefb 100%);
     text-align: center;
-    padding-top: 80px; /* Ya tenía este valor, lo mantenemos como mínimo */
+    padding-top: 80px;
 }
 
 #inicio img {
@@ -120,7 +131,8 @@ section {
 }
 
 /* --- 6. SECCIÓN PRODUCTOS (FLEXBOX) --- */
-#productos .productos-container {
+#productos .productos-container,
+#productos-fake-api.productos-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -175,7 +187,7 @@ section {
     display: block;
 }
 
-.boton-comprar {
+.boton-agregar {
     display: inline-block;
     background-color: #2ecc71;
     color: white;
@@ -183,9 +195,11 @@ section {
     border-radius: 5px;
     margin-top: 15px;
     transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
-.boton-comprar:hover {
+.boton-agregar:hover {
     background-color: #27ae60;
 }
 
@@ -227,8 +241,7 @@ section {
     font-style: normal;
 }
 
-
-/* --- 8. SECCIÓN CONTACTO (FORMULARIO Y MEDIA QUERIES) --- */
+/* --- 8. SECCIÓN CONTACTO (FORMULARIO) --- */
 #contacto {
     background-color: #f0f8ff;
     padding: 40px 20px;
@@ -293,7 +306,6 @@ section {
     background-color: #2980b9;
 }
 
-
 /* --- 9. ESTILOS DEL FOOTER --- */
 footer {
     background-color: #333;
@@ -318,8 +330,7 @@ footer a:hover {
     color: #bbdefb;
 }
 
-
-/* --- 10. ESTILOS PARA SECCIÓN DE VIDEOS RELACIONADOS (Alineados como cards de producto) --- */
+/* --- 10. ESTILOS PARA SECCIÓN DE VIDEOS RELACIONADOS --- */
 #productos-video {
     text-align: center;
     background-color: #f7f7f7;
@@ -388,24 +399,142 @@ footer a:hover {
 }
 
 
-/* --- 11. MEDIA QUERIES (PARA RESPONSIVE DESIGN) --- */
+/* --- 11. ESTILOS DEL CARRITO FLOTANTE (VERSION SIMPLIFICADA) --- */
+.carrito-flotante {
+    position: fixed; /* Mantiene el carrito en la pantalla */
+    top: 50%; /* Centra verticalmente */
+    right: 20px; /* Posiciona a la derecha */
+    transform: translateY(-50%); /* Ajusta el centrado vertical */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    width: 300px; /* Ancho fijo para el carrito */
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+    /* PROPIEDADES CLAVE PARA EL SCROLL INTERNO */
+    display: flex; /* Habilita Flexbox */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    max-height: calc(100vh - 40px); /* El carrito no puede ser más alto que la ventana - un margen */
+    overflow: hidden; /* Evita que el propio carrito tenga scroll */
+
+    /* Oculto por defecto, el JavaScript lo mostrará/ocultará */
+    display: flex; /* Este `display: flex;` debería estar controlado por JS, asegúrate de que el estado inicial sea `none` en tu HTML o un estilo CSS global más específico. */
+}
+
+/* Título del carrito */
+#carrito h2 {
+    margin-bottom: 10px; /* Ajustado: menos margen */
+    font-size: 1.2em; /* AJUSTE: Más chico para escritorio y móvil */
+    color: #333;
+    flex-shrink: 0; /* Asegura que el título no se encoja */
+    display: flex; /* Permite alinear el ícono con el texto */
+    align-items: center; /* Centra verticalmente el ícono con el texto */
+    gap: 8px; /* Espacio entre el ícono y el texto */
+    padding-top: 5px; /* Pequeño ajuste si se ve muy pegado arriba */
+}
+
+/* Si tu ícono es un <i> dentro del h2, puedes achicarlo específicamente */
+#carrito h2 i.fa-shopping-cart { /* Asumiendo que usas FontAwesome */
+    font-size: 1.4em; /* Ligeramente más grande que el texto para que se vea bien */
+}
+
+/* Contenedor de la lista de productos dentro del carrito */
+.carrito-contenido-scrollable {
+    flex-grow: 1; /* Esto hace que este elemento ocupe todo el espacio disponible */
+    overflow-y: auto; /* ESTO ES LO QUE GENERA EL SCROLL VERTICAL si el contenido excede */
+    margin-bottom: 15px; /* Espacio entre la lista y los botones */
+    padding-right: 5px; /* Para que la barra de scroll no se superponga con el contenido */
+}
+
+/* Estilos de la lista de ítems del carrito */
+#lista-carrito {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lista-carrito li {
+    padding: 10px;
+    margin-bottom: 8px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-wrap: break-word; /* Para textos largos */
+    min-width: 0; /* Permite que el contenido se ajuste */
+    box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño total */
+}
+
+/* Contenedor de los botones de acción del carrito */
+.carrito-acciones {
+    display: flex;
+    flex-wrap: wrap; /* Para que los botones se envuelvan si no caben */
+    justify-content: space-between;
+    gap: 10px; /* Espacio entre los botones */
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    flex-shrink: 0; /* IMPRESCINDIBLE: Evita que los botones se encojan y garantiza que siempre estén visibles */
+}
+
+/* Estilos para los botones (Vaciar, Pagar, Cerrar) */
+.carrito-acciones button {
+    padding: 10px 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-grow: 1; /* Para que los botones intenten ocupar el espacio disponible */
+    min-width: 80px; /* Asegura un tamaño mínimo para los botones */
+}
+
+#vaciar-carrito {
+    background-color: #dc3545; /* Rojo */
+    color: #fff;
+}
+#vaciar-carrito:hover {
+    background-color: #c82333;
+}
+
+#boton-pagar {
+    background-color: #28a745; /* Verde */
+    color: #fff;
+}
+#boton-pagar:hover {
+    background-color: #218838;
+}
+
+#cerrar-carrito {
+    background-color: #6c757d; /* Gris */
+    color: #fff;
+}
+#cerrar-carrito:hover {
+    background-color: #5a6268;
+}
+
+
+/* --- 12. MEDIA QUERIES (PARA RESPONSIVE DESIGN) --- */
 
 /* Para pantallas más pequeñas que 768px (tabletas y móviles) */
 @media (max-width: 768px) {
     header {
-        flex-direction: column; /* Apila el título y la navegación */
-        justify-content: center; /* Centra el contenido cuando se apila */
-        padding: 15px 15px; /* Más padding vertical para cuando está apilado */
+        flex-direction: column;
+        justify-content: center;
+        padding: 15px 15px;
     }
 
     header h1 {
-        margin-bottom: 10px; /* Espacio entre el título y el menú */
-        font-size: 2em; /* Puedes ajustar este tamaño */
+        margin-bottom: 10px;
+        font-size: 2em;
     }
 
     nav ul {
-        flex-direction: column; /* Apila los elementos del menú */
-        align-items: center; /* Centra los elementos apilados */
+        flex-direction: column;
+        align-items: center;
     }
 
     nav ul li {
@@ -413,7 +542,7 @@ footer a:hover {
     }
 
     nav ul li a {
-        padding: 8px 15px; /* Volver a un padding decente para los botones apilados */
+        padding: 8px 15px;
     }
 
     /* Ajustes para las cards de productos y videos en pantallas medianas */
@@ -433,34 +562,83 @@ footer a:hover {
 
     /* Ajuste de scroll-padding-top para esta altura de header apilado */
     body {
-        scroll-padding-top: 130px; /* Aprox. 15px (padding header) + h1_height + 10px (margin) + nav_height + 15px (padding header) */
+        scroll-padding-top: 130px;
     }
+
+    /* ********** CAMBIOS PARA CARRITO "MODAL/FLOTANTE" EN MÓVIL (AJUSTADO: MÁS CHICO Y ARRIBA) ********** */
+    .carrito-flotante {
+        position: fixed; /* Mantiene el posicionamiento fijo */
+        top: 30px; /* AJUSTE: Mueve el carrito más arriba desde el borde superior */
+        left: 50%; /* Centrado horizontal */
+        transform: translateX(-50%); /* AJUSTE: Solo centrado horizontal, no vertical */
+        width: calc(100% - 60px); /* AJUSTE: Un poco más estrecho (30px de margen a cada lado) */
+        max-width: 380px; /* AJUSTE: Límite máximo para que no sea muy grande en tablets */
+        max-height: calc(100vh - 60px); /* AJUSTE: Reduce la altura máxima para ser más compacto, dejando 30px arriba y abajo */
+        overflow: hidden; /* Sigue evitando el scroll del carrito en sí */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada para el efecto modal */
+        background-color: #fff; /* Aseguramos un fondo blanco si el body es de otro color */
+        z-index: 1000; /* Asegura que esté por encima de todo */
+        /* Asegúrate de que NO tengas 'display: static;' aquí.
+           Tu JS debe controlar si se muestra o no con 'display: flex;' o 'display: none;'. */
+    }
+
+    /* AJUSTE PARA POSICIONAR EL TÍTULO DEL CARRITO A LA DERECHA EN MÓVIL */
+    #carrito h2 {
+        text-align: right; /* Alinea el texto a la derecha */
+        justify-content: flex-end; /* Si el h2 es flexbox, alinea los elementos (ícono/texto) al final */
+        margin-right: 0; /* Asegura que no haya margen extra a la derecha */
+    }
+
+    .carrito-contenido-scrollable {
+        flex-grow: 1;
+        overflow-y: auto; /* Mantiene el scroll interno si el contenido desborda la nueva max-height */
+        padding-right: 5px; /* Para la barra de scroll */
+        /* Asegúrate de que NO tengas 'overflow-y: visible;' aquí. */
+    }
+
+    /* Overlay oscuro para el fondo */
+    .overlay-activo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* Color oscuro semitransparente */
+        z-index: 999; /* Justo debajo del carrito, que es 1000 */
+        display: block; /* Se mostrará cuando el carrito esté activo */
+    }
+    /* ********** FIN CAMBIOS PARA CARRITO "MODAL/FLOTANTE" EN MÓVIL (AJUSTADO) ********** */
 }
 
 /* Para pantallas aún más pequeñas que 480px (principalmente móviles) */
 @media (max-width: 480px) {
     body {
         font-size: 15px;
-        scroll-padding-top: 130px; /* Asegura que mantenga el espacio incluso en las más pequeñas */
+        scroll-padding-top: 130px;
     }
 
     header {
-        padding: 10px 10px; /* Reducir aún más el padding en móviles */
+        padding: 10px 10px;
     }
 
     header h1 {
-        font-size: 1.5em; /* Un poco más pequeño para pantallas muy pequeñas */
-        margin-bottom: 8px; /* Más compacto */
+        font-size: 1.5em;
+        margin-bottom: 8px;
+    }
+
+    nav ul {
+        margin-bottom: 5px; /* Pequeño ajuste para el espacio entre nav y carrito en header */
     }
 
     nav ul li {
-        margin: 6px 0; /* Más compacto en el menú */
+        margin: 6px 0;
     }
 
     nav ul li a {
-        padding: 6px 12px; /* Más compacto en los botones del menú */
+        padding: 6px 12px;
     }
-
 
     section {
         padding: 20px 15px;

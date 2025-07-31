@@ -5,20 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pack-tech - Onfit</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
     </head>
 <body>
 
-    <header>
-        <h1>Pack-tech - onfit</h1>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#reseñas">Reseñas</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+   <header class="navbar">
+  <h1 class="logo">Pack-tech - onfit</h1>
+
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#reseñas">Reseñas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="carrito">
+  <a href="#carrito"><i class="fas fa-shopping-cart"></i></a>
+</div>
+
+</header>
+
 
     <main>
         <section id="inicio">
@@ -38,7 +48,12 @@
                     <h3>Bandas de Resistencia PowerFlex</h3>
                     <p>Set de 5 bandas para entrenamientos de fuerza y rehabilitación. Perfectas para llevar a cualquier parte.</p>
                     <span>$29.99</span>
-                    <a href="#" class="boton-comprar">Comprar Ahora</a>
+                   <button class="boton-agregar"
+                   data-id="1"
+                   data-nombre="Bandas de Resistencia PowerFlex"
+                   data-precio="29.99">
+                   Agregar al carrito
+                   </button>
                 </article>
 
                 <article class="producto-card">
@@ -46,7 +61,13 @@
                     <h3>Rodillo de Espuma ErgoRoll Pro</h3>
                     <p>Alivia la tensión muscular y mejora la flexibilidad. Diseño ergonómico para una recuperación óptima.</p>
                     <span>$45.00</span>
-                    <a href="#" class="boton-comprar">Comprar Ahora</a>
+                    <button class="boton-agregar"
+                    data-id="2"
+                    data-nombre="Rodillo de Espuma ErgoRoll Pro"
+                    data-precio="45.00">
+                    Agregar al carrito
+                   </button>
+
                 </article>
 
                 <article class="producto-card">
@@ -54,10 +75,37 @@
                     <h3>Botella Térmica HydraKeep Elite</h3>
                     <p>Mantén tus bebidas frías o calientes por horas. Fabricada en acero inoxidable de alta calidad, perfecta para el gimnasio.</p>
                     <span>$19.99</span>
-                    <a href="#" class="boton-comprar">Comprar Ahora</a>
+                   <button class="boton-agregar"
+                   data-id="3"
+                   data-nombre="Botella Térmica HydraKeep Elite"
+                   data-precio="19.99">
+                   Agregar al carrito
+                   </button>
                 </article>
             </div>
-        </section>
+        
+</section>
+
+<section id="carrito" class="carrito-flotante">
+    <h2>🛒 Tu Carrito</h2>
+    <div class="carrito-contenido-scrollable">
+        <ul id="lista-carrito"></ul>  </div>
+    <div class="carrito-acciones">
+        <button id="vaciar-carrito">Vaciar Carrito</button>
+        <button id="boton-pagar" class="boton-accion">Pagar</button>
+        <button id="cerrar-carrito" class="boton-accion">Cerrar</button>
+    </div>
+</section>
+        <section id="productos-externos">
+  <h2>🛍️ Productos Externos Promocionales</h2>
+  <p style="text-align: center; max-width: 600px; margin: 0 auto 20px; font-size: 1rem;">
+    A continuación te presentamos productos externos de otras tiendas que se ofrecen a <strong>precios promocionales</strong> por tiempo limitado.
+  </p>
+  <div id="productos-fake-api" class="productos-container">
+    <!-- Acá se insertan los productos con JS -->
+  </div>
+</section>
+
        <section id="productos-video">
            <h2>Videos Relacionados con Fitness y Nuestros Productos</h2>
            <div class="video-grid-container">
@@ -141,6 +189,7 @@
             <a href="#" target="_blank">Twitter</a>
         </p>
     </footer>
-
+<script src="js/products.js"></script> 
+<script src="js/carrito.js"></script>
 </body>
 </html>
